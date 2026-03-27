@@ -15,7 +15,7 @@ if fl is not None:
     st.write(filename)
     df = pd.read_csv(filename, encoding = "ISO-8859-1")
 else:
-    os.chdir(r"C:\Users\gulsh\Desktop\superstore_sales_analysis")
+    os.chdir(r"E:\data-sets\python\superstore_sales_analysis\superstore_sales_analysis")
     df = pd.read_csv("Sample - Superstore.csv", encoding = "ISO-8859-1")
 
 col1, col2 = st.columns((2))
@@ -150,9 +150,18 @@ with st.expander("Summary_Table"):
 
 # Create a scatter plot
 data1 = px.scatter(filtered_df, x = "Sales", y = "Profit", size = "Quantity")
-data1['layout'].update(title="Relationship between Sales and Profits using Scatter Plot.",
-                       titlefont = dict(size=20),xaxis = dict(title="Sales",titlefont=dict(size=19)),
-                       yaxis = dict(title = "Profit", titlefont = dict(size=19)))
+data1.update_layout(
+    title=dict(
+        text="Relationship between Sales and Profits using Scatter Plot.",
+        font=dict(size=20)
+    ),
+    xaxis=dict(
+        title=dict(text="Sales", font=dict(size=19))
+    ),
+    yaxis=dict(
+        title=dict(text="Profit", font=dict(size=19))
+    )
+)
 st.plotly_chart(data1,use_container_width=True)
 
 with st.expander("View Data"):
